@@ -7,6 +7,9 @@ public class KolkoiKrzyzyk extends JFrame{
 
 	JPanel panel = new JPanel();
 	XOButton buttons [] = new XOButton [9]; 
+	JMenuBar menuBar;
+	JMenu Plik,Informacje;
+	JMenuItem itemNowaGra,itemWyjscie,itemJakGrac,itemOProgramie;
 	
 	public static void main(String[] args) {
 	
@@ -18,6 +21,23 @@ public class KolkoiKrzyzyk extends JFrame{
 			
 			this.setTitle("Kółko i krzyżyk");
 			setSize(400,400);
+			
+			menuBar = new JMenuBar();
+			setJMenuBar(menuBar);
+			
+			Plik = new JMenu("Plik");
+				
+				menuBar.add(Plik);
+				
+				itemNowaGra = new JMenuItem("Nowa Gra");
+				Plik.add(itemNowaGra);
+				
+				itemWyjscie = new JMenuItem("Wyjście");
+				Plik.addSeparator();
+				Plik.add(itemWyjscie);
+				
+			add(menuBar);
+				
 			
 			Toolkit tk = Toolkit.getDefaultToolkit();
 			Dimension dim = tk.getScreenSize();
