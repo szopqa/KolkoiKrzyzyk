@@ -1,14 +1,23 @@
-import javax.swing.*;
-import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class KolkoiKrzyzyk extends JFrame{
+import javax.swing.Box;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+
+public class KolkoiKrzyzyk extends JFrame implements ActionListener{
 
 	JPanel panel = new JPanel();
 	XOButton buttons [] = new XOButton [9]; 
 	JMenuBar menuBar;
-	JMenu Plik,Informacje;
+	JMenu Plik,Pomoc;
 	JMenuItem itemNowaGra,itemWyjscie,itemJakGrac,itemOProgramie;
 	
 	public static void main(String[] args) {
@@ -22,22 +31,39 @@ public class KolkoiKrzyzyk extends JFrame{
 			this.setTitle("Kółko i krzyżyk");
 			setSize(400,400);
 			
-			menuBar = new JMenuBar();
+			menuBar = new JMenuBar(); 
 			setJMenuBar(menuBar);
 			
 			Plik = new JMenu("Plik");
 				
 				menuBar.add(Plik);
 				
-				itemNowaGra = new JMenuItem("Nowa Gra");
+				itemNowaGra = new JMenuItem("Nowa Gra",'N');
+				itemNowaGra.setAccelerator(KeyStroke.getKeyStroke("ctrl N"));
+				itemNowaGra.addActionListener(this);
 				Plik.add(itemNowaGra);
 				
-				itemWyjscie = new JMenuItem("Wyjście");
 				Plik.addSeparator();
+				itemWyjscie = new JMenuItem("Wyjście",'W');
+				itemWyjscie.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
+				itemWyjscie.addActionListener(this);
 				Plik.add(itemWyjscie);
+			
+			menuBar.add(Box.createHorizontalGlue());
+			Pomoc = new JMenu("Pomoc");
+			
+				menuBar.add(Pomoc);
+				
+				itemJakGrac = new JMenuItem("Jak grać?");
+				itemJakGrac.addActionListener(this);
+				Pomoc.add(itemJakGrac);
+				
+				itemOProgramie = new JMenuItem("O programie");
+				itemOProgramie.addActionListener(this);
+				Pomoc.add(itemOProgramie);
 				
 			add(menuBar);
-				
+			setJMenuBar(menuBar);	
 			
 			Toolkit tk = Toolkit.getDefaultToolkit();
 			Dimension dim = tk.getScreenSize();
@@ -57,6 +83,12 @@ public class KolkoiKrzyzyk extends JFrame{
 
 			
 			setVisible(true);
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			
 		}
 	
 }
